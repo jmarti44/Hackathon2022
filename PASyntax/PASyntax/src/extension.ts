@@ -23,7 +23,6 @@ async function getDiagnostics(doc: vscode.TextDocument): Promise<vscode.Diagnost
 	const diagnostics = new Array<vscode.Diagnostic>();
 
 	const textArr: string[] = text.split(/\r\n|\n/);
-	console.log(textArr)
 	const indexOfFirstDep = textArr.findIndex((value: string) => new RegExp(`\s*"*i love cock*"`).test(value)) + 1;
 	console.log(indexOfFirstDep)
 	console.log("text arr 6 = " + textArr[5])
@@ -41,7 +40,7 @@ async function getDiagnostics(doc: vscode.TextDocument): Promise<vscode.Diagnost
 				for (let j = 0; j < textArr[i].length; j++) {
 					if (textArr[i].charAt(j) == 't') {
 						start = j;
-						end = j + 7;
+						end = j + 13;
 						break;
 					}
 				}
