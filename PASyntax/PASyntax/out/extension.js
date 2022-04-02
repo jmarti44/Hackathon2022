@@ -5,49 +5,30 @@ exports.deactivate = exports.activate = void 0;
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 // import { TypesInstaller } from './typesInstaller';
-// Not perfect but should work for a lot of scenarios
-async function shouldMark(key) {
-    console.log("key = " + key);
-    var out = key.replace(/\s/g, "");
-    console.log("out = " + out);
-    if (out == "\"testing\"") {
-        console.log("returning true");
-        return true;
-    }
-    return false;
-}
 async function getDiagnostics(doc) {
     const text = doc.getText();
     const diagnostics = new Array();
     const textArr = text.split(/\r\n|\n/);
-    const indexOfFirstDep = textArr.findIndex((value) => new RegExp(`\s*"*i love cock*"`).test(value)) + 1;
-    console.log(indexOfFirstDep);
-    console.log("text arr 6 = " + textArr[5]);
-    if (indexOfFirstDep !== -1) {
-        let i = indexOfFirstDep - 1;
-        console.log("textarrlength = " + textArr.length);
-        console.log("i = " + i);
-        while (textArr.length > i) {
-            console.log("key");
-            if (await shouldMark(textArr[i])) {
-                var start = 0;
-                var end = 0;
-                for (let j = 0; j < textArr[i].length; j++) {
-                    if (textArr[i].charAt(j) == 't') {
-                        start = j;
-                        end = j + 13;
-                        break;
-                    }
-                }
-                diagnostics.push({
-                    severity: vscode.DiagnosticSeverity.Information,
-                    message: `mr debugger help`,
-                    code: 'no-types-detected',
-                    source: 'Types Installer Helper',
-                    range: new vscode.Range(i, start, i, end)
-                });
-            }
-            i++;
+    for (let i = 0; i < textArr.length; i++) {
+        let found = -1;
+        found = textArr[i].search("testing");
+        if (found >= 0) {
+            var start = textArr[i].search("testing");
+            var end = start + 7;
+            // for (let j = 0; j < textArr[i].length; j++) {
+            // 	if (textArr[i].charAt(j) == 'x') {
+            // 		start = j;
+            // 		end = j + 13;
+            // 		break;
+            // 	}
+            // }
+            diagnostics.push({
+                severity: vscode.DiagnosticSeverity.Warning,
+                message: `FUCKKK OOFFOFOFDIJSOKFJ`,
+                code: 'no-types-detected',
+                source: 'Types Installer Helper',
+                range: new vscode.Range(i, start, i, end)
+            });
         }
     }
     return diagnostics;
@@ -82,7 +63,7 @@ async function activate(context) {
     let disposable = vscode.commands.registerCommand('PASyntax.helloWorld', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World from PASyntax!');
+        vscode.window.showInformationMessage('Meow Meow');
     });
     context.subscriptions.push(disposable);
 }
