@@ -30,8 +30,15 @@ async function getDiagnostics(doc) {
         while (textArr.length > i) {
             console.log("key");
             if (await shouldMark(textArr[i])) {
-                const start = i;
-                const end = start + 9;
+                var start = 0;
+                var end = 0;
+                for (let j = 0; j < textArr[i].length; j++) {
+                    if (textArr[i].charAt(j) == 'i') {
+                        start = j;
+                        end = j + 13;
+                        break;
+                    }
+                }
                 diagnostics.push({
                     severity: vscode.DiagnosticSeverity.Information,
                     message: `mr debugger help`,
