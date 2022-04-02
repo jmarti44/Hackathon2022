@@ -9,7 +9,7 @@ async function shouldMark(key: string) {
 	console.log("key = " + key);
 	var out = key.replace(/\s/g, "");
 	console.log("out = " + out);
-	if (out == "\"ilovecock\"")
+	if (out == "\"testing\"")
 	{
 		console.log("returning true");
 		return true;
@@ -23,7 +23,8 @@ async function getDiagnostics(doc: vscode.TextDocument): Promise<vscode.Diagnost
 	const diagnostics = new Array<vscode.Diagnostic>();
 
 	const textArr: string[] = text.split(/\r\n|\n/);
-	const indexOfFirstDep = textArr.findIndex((value: string) => new RegExp(`\s*"i love cock"`).test(value)) + 1;
+	console.log(textArr)
+	const indexOfFirstDep = textArr.findIndex((value: string) => new RegExp(`\s*"*i love cock*"`).test(value)) + 1;
 	console.log(indexOfFirstDep)
 	console.log("text arr 6 = " + textArr[5])
 
@@ -38,9 +39,9 @@ async function getDiagnostics(doc: vscode.TextDocument): Promise<vscode.Diagnost
 				var start = 0;
 				var end = 0;
 				for (let j = 0; j < textArr[i].length; j++) {
-					if (textArr[i].charAt(j) == 'i') {
+					if (textArr[i].charAt(j) == 't') {
 						start = j;
-						end = j + 13;
+						end = j + 7;
 						break;
 					}
 				}
