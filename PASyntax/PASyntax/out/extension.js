@@ -8,11 +8,12 @@ const vscode = require("vscode");
 async function getDiagnostics(doc) {
     const text = doc.getText();
     const diagnostics = new Array();
+    let testing = false;
     const textArr = text.split(/\r\n|\n/);
     for (let i = 0; i < textArr.length; i++) {
         let found = -1;
         found = textArr[i].search("testing");
-        if (found >= 0) {
+        if (found > 0) {
             var start = textArr[i].search("testing");
             var end = start + 7;
             // for (let j = 0; j < textArr[i].length; j++) {
@@ -24,9 +25,28 @@ async function getDiagnostics(doc) {
             // }
             diagnostics.push({
                 severity: vscode.DiagnosticSeverity.Warning,
-                message: `FUCKKK OOFFOFOFDIJSOKFJ`,
-                code: 'no-types-detected',
-                source: 'Types Installer Helper',
+                message: `testing squiggily`,
+                code: 'testing dont work',
+                source: 'PASyntax',
+                range: new vscode.Range(i, start, i, end)
+            });
+        }
+        found = textArr[i].search("penis");
+        if (found >= 0) {
+            var start = textArr[i].search("penis");
+            var end = start + 5;
+            // for (let j = 0; j < textArr[i].length; j++) {
+            // 	if (textArr[i].charAt(j) == 'x') {
+            // 		start = j;
+            // 		end = j + 13;
+            // 		break;
+            // 	}
+            // }
+            diagnostics.push({
+                severity: vscode.DiagnosticSeverity.Information,
+                message: `penis`,
+                code: 'penis dont work',
+                source: 'PASyntax',
                 range: new vscode.Range(i, start, i, end)
             });
         }
@@ -52,6 +72,22 @@ async function activate(context) {
     if (vscode.window.activeTextEditor) {
         await handler(vscode.window.activeTextEditor.document);
     }
+    context.subscriptions.push(vscode.languages.registerHoverProvider("java", {
+        provideHover: (document, position) => {
+            const { line } = position;
+            const ur = "https://gray-wbrc-prod.cdn.arcpublishing.com/resizer/_auGpao1CPapEPc4UeaKOiKnZ5Y=/1200x1800/smart/filters:quality(85)/cloudfront-us-east-1.images.arcpublishing.com/gray/BV7IA24BUZBBRCKTJE5XP6KPPQ.jpg";
+            const lineContent = document.lineAt(line).text;
+            const regexp = /test/;
+            const res = lineContent.match(regexp);
+            console.log("1", res);
+            if (res === null) {
+                return;
+            }
+            const url = res[0];
+            console.log("2", url);
+            return new vscode.Hover(new vscode.MarkdownString(`![](${ur}|width=150,height=150)`));
+        },
+    }));
     // Push all of the disposables that should be cleaned up when the extension is disabled
     context.subscriptions.push(diagnosticCollection, didOpen, didChange);
     // Use the console to output diagnostic information (console.log) and errors (console.error)
