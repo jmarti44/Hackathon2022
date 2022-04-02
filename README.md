@@ -5,5 +5,5 @@
 1. Julio Sibrian
 3.
 4. Sam Lefforge
-5. 
+5. Alexis Mercado
 6. Steve Liang
