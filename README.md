@@ -5,5 +5,5 @@
 1.
 1.
 1. Sam Lefforge
-1. Alexis Mercado
+1. 
 1. Steve Liang
