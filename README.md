@@ -2,8 +2,8 @@
 
 # Team Members
 1. Jose Martinez
-1.
-1.
-1. Sam Lefforge
-1. Alexis Mercado
-1. Steve Liang
+1. Julio Sibrian
+3.
+4. Sam Lefforge
+5. Alexis Mercado
+6. Steve Liang
