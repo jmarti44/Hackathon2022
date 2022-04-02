@@ -10,14 +10,18 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:PASyntax.helloWorld"
+        "onCommand:PASyntax.helloWorld",
+		"onCommand:PASyntax.samsCommand"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [{
             "command": "PASyntax.helloWorld",
             "title": "Hello World"
-
+		},
+		{
+			"command": "PASyntax.samsCommand",
+            "title": "sams command"
 		}]
 	},
 	"scripts": {

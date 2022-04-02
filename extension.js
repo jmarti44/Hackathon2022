@@ -24,6 +24,27 @@ function activate(context) {
 		vscode.window.showInformationMessage('Hello World from PASyntax!');
 	});
 
+	let disposable2 = vscode.commands.registerCommand('PASyntax.samsCommand', function () {
+		// The code you place here will be executed every time your command is executed
+
+		// Display a message box to the user
+		let test = vscode.languages.registerHoverProvider("javascript", {
+			provideHover: (document, position) => {
+				// @ts-ignore
+				const { _line } = position;
+				const content = document.lineAt(_line).text;
+				const regex = /\t/;
+				const res = content.match(regex);
+				if (res) {
+					return new vscode.Hover("detected");
+				}
+				else {
+					return new vscode.Hover("not detected");
+				}
+			}
+		})
+	});
+
 	context.subscriptions.push(disposable);
 }
 
